@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import InputFunc from './Components/InputFunc.js';
+import InputClass from './Components/InputClass.js';
+import Result from './Components/Result.js';
 import './App.css';
+import React, { useState } from 'react';
 
 function App() {
+
+  const [currResult, setResult] = useState();
+  
+  function update(resVal, isError){
+        console.debug("isError:");
+        console.debug(isError);
+      setResult(<Result resValue={resVal} isError={isError}/>);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Функционально:</h1>
+      <InputFunc handleRes={update}/>
+      <h1>Классово:</h1>
+      <InputClass handleRes={update} />
+      {currResult}
     </div>
   );
 }
